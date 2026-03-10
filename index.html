@@ -1,1 +1,825 @@
-<h1>My Page</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Artem Yakovlev | Senior Mobile Software Architect</title>
+    <meta
+      name="description"
+      content="Portfolio site for Artem Yakovlev, a senior mobile software architect focused on high-quality iOS products, architecture, and delivery."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f5f7fb;
+        --surface: rgba(255, 255, 255, 0.82);
+        --surface-strong: #ffffff;
+        --ink: #162033;
+        --muted: #58647c;
+        --line: rgba(22, 32, 51, 0.1);
+        --brand: #1976d2;
+        --brand-deep: #0f4aa8;
+        --brand-soft: rgba(25, 118, 210, 0.12);
+        --accent: #17b7a0;
+        --shadow: 0 24px 60px rgba(30, 42, 73, 0.12);
+        --radius-xl: 32px;
+        --radius-lg: 22px;
+        --radius-md: 16px;
+        --max-width: 1180px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Manrope", sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at top left, rgba(23, 183, 160, 0.16), transparent 26%),
+          radial-gradient(circle at top right, rgba(25, 118, 210, 0.18), transparent 28%),
+          linear-gradient(180deg, #eef4fb 0%, #f8fafc 35%, #f3f6fb 100%);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .shell {
+        width: min(var(--max-width), calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(18px);
+        background: rgba(245, 247, 251, 0.72);
+        border-bottom: 1px solid rgba(22, 32, 51, 0.06);
+      }
+
+      .topbar-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 18px 0;
+      }
+
+      .brand {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+
+      .nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        font-size: 0.95rem;
+        color: var(--muted);
+      }
+
+      .nav a:hover,
+      .nav a:focus-visible {
+        color: var(--brand-deep);
+      }
+
+      main {
+        padding: 34px 0 72px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.3fr 0.9fr;
+        gap: 28px;
+        align-items: stretch;
+      }
+
+      .panel {
+        background: var(--surface);
+        border: 1px solid rgba(255, 255, 255, 0.75);
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow);
+      }
+
+      .hero-copy {
+        padding: 44px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-copy::after {
+        content: "";
+        position: absolute;
+        inset: auto -60px -90px auto;
+        width: 240px;
+        height: 240px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(23, 183, 160, 0.18), transparent 70%);
+      }
+
+      .eyebrow,
+      .section-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--brand-deep);
+        font-size: 0.82rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before,
+      .section-label::before {
+        content: "";
+        width: 36px;
+        height: 2px;
+        background: currentColor;
+        opacity: 0.35;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        letter-spacing: -0.04em;
+      }
+
+      h1 {
+        max-width: 11ch;
+        margin-top: 18px;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(3rem, 6vw, 5.2rem);
+        line-height: 0.95;
+      }
+
+      .hero-copy h1 span {
+        color: var(--brand);
+      }
+
+      .hero-copy p {
+        max-width: 60ch;
+        margin: 22px 0 0;
+        font-size: 1.02rem;
+        line-height: 1.8;
+        color: var(--muted);
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 28px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0 20px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        font-weight: 700;
+        transition: 180ms ease;
+      }
+
+      .button.primary {
+        color: #fff;
+        background: linear-gradient(135deg, var(--brand) 0%, var(--brand-deep) 100%);
+      }
+
+      .button.secondary {
+        color: var(--ink);
+        border-color: var(--line);
+        background: rgba(255, 255, 255, 0.72);
+      }
+
+      .button:hover,
+      .button:focus-visible {
+        transform: translateY(-2px);
+      }
+
+      .hero-meta {
+        display: grid;
+        gap: 18px;
+        padding: 28px;
+      }
+
+      .identity-card {
+        padding: 28px;
+        min-height: 100%;
+        background:
+          linear-gradient(180deg, rgba(25, 118, 210, 0.08) 0%, rgba(255, 255, 255, 0.94) 60%),
+          var(--surface-strong);
+      }
+
+      .status-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 0 8px rgba(23, 183, 160, 0.12);
+      }
+
+      .identity-row {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 26px;
+      }
+
+      .identity-title {
+        font-size: 0.92rem;
+        color: var(--muted);
+      }
+
+      .identity-role {
+        margin-top: 6px;
+        font-size: 1.32rem;
+        font-weight: 800;
+      }
+
+      .stat-grid,
+      .contact-grid,
+      .expertise-grid,
+      .impact-grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      .stat-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .stat-card,
+      .contact-card,
+      .skill-card,
+      .impact-card,
+      .timeline-card,
+      .quote-card {
+        padding: 22px;
+        border-radius: var(--radius-lg);
+        background: var(--surface-strong);
+        border: 1px solid var(--line);
+      }
+
+      .stat-value {
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: -0.05em;
+      }
+
+      .stat-label,
+      .meta-label,
+      .item-copy,
+      .job-meta {
+        color: var(--muted);
+      }
+
+      section {
+        margin-top: 28px;
+      }
+
+      .two-column {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 28px;
+      }
+
+      .section-panel {
+        padding: 32px;
+      }
+
+      .section-panel h2 {
+        margin-top: 14px;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(2rem, 4vw, 3.1rem);
+      }
+
+      .lede {
+        margin-top: 16px;
+        max-width: 60ch;
+        line-height: 1.8;
+        color: var(--muted);
+      }
+
+      .impact-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 26px;
+      }
+
+      .impact-card strong,
+      .skill-card strong,
+      .contact-card strong {
+        display: block;
+        font-size: 1.06rem;
+      }
+
+      .impact-card p,
+      .skill-card p,
+      .contact-card p,
+      .timeline-card p,
+      .quote-card p {
+        margin: 10px 0 0;
+        line-height: 1.7;
+        color: var(--muted);
+      }
+
+      .timeline {
+        display: grid;
+        gap: 18px;
+        margin-top: 26px;
+      }
+
+      .timeline-card {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .timeline-card::before {
+        content: "";
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 5px;
+        background: linear-gradient(180deg, var(--brand), var(--accent));
+      }
+
+      .timeline-card-inner {
+        padding-left: 16px;
+      }
+
+      .job-topline {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 8px 20px;
+      }
+
+      .timeline-card h3 {
+        font-size: 1.28rem;
+      }
+
+      .job-company {
+        margin-top: 6px;
+        font-weight: 700;
+      }
+
+      .job-meta {
+        font-size: 0.92rem;
+        font-weight: 700;
+      }
+
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .pill {
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: var(--brand-soft);
+        color: var(--brand-deep);
+        font-size: 0.86rem;
+        font-weight: 700;
+      }
+
+      .expertise-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 24px;
+      }
+
+      .quote-card {
+        margin-top: 24px;
+        background:
+          linear-gradient(135deg, rgba(25, 118, 210, 0.08), rgba(23, 183, 160, 0.12)),
+          var(--surface-strong);
+      }
+
+      .quote-card strong {
+        display: block;
+        font-size: 1.15rem;
+      }
+
+      .contact-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin-top: 24px;
+      }
+
+      .contact-card a {
+        color: var(--brand-deep);
+        font-weight: 700;
+      }
+
+      footer {
+        padding: 26px 0 12px;
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
+
+      @media (max-width: 980px) {
+        .hero,
+        .two-column {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-copy,
+        .section-panel {
+          padding: 30px;
+        }
+
+        .contact-grid,
+        .impact-grid,
+        .expertise-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .topbar-inner {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .nav {
+          gap: 12px 16px;
+        }
+
+        main {
+          padding-top: 18px;
+        }
+
+        .hero-copy {
+          padding: 24px;
+        }
+
+        .hero-meta {
+          padding: 0;
+        }
+
+        .identity-card {
+          padding: 24px;
+        }
+
+        .stat-grid {
+          grid-template-columns: 1fr;
+        }
+
+        h1 {
+          max-width: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="shell topbar-inner">
+        <a class="brand" href="#top">Artem Yakovlev</a>
+        <nav class="nav" aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#expertise">Expertise</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top" class="shell">
+      <section class="hero">
+        <article class="panel hero-copy">
+          <span class="eyebrow">Senior Mobile Software Architect</span>
+          <h1>Artem <span>Yakovlev</span></h1>
+          <p>
+            I design and ship high-quality iOS products with a strong bias for
+            clean architecture, stable delivery, and pragmatic product thinking.
+            My work spans the full lifecycle: from shaping an idea and choosing
+            the right technical direction to launching and evolving it in
+            production.
+          </p>
+          <p>
+            Over the last decade, I have built mobile applications across health
+            tech, sports, and real estate, while mentoring teams, integrating
+            backend services, and keeping quality, usability, security, and
+            scalability in focus.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#contact">Start a conversation</a>
+            <a class="button secondary" href="./ArtemYakovlevCV(2026).pdf"
+              >Download CV</a
+            >
+          </div>
+        </article>
+
+        <aside class="hero-meta">
+          <section class="panel identity-card">
+            <div class="identity-row">
+              <span class="status-dot" aria-hidden="true"></span>
+              <div>
+                <div class="identity-title">Based in Zaporizhzhia, Ukraine</div>
+                <div class="identity-role">Available for remote product work</div>
+              </div>
+            </div>
+            <div class="stat-grid">
+              <article class="stat-card">
+                <div class="stat-value">10+</div>
+                <div class="stat-label">Years in software delivery</div>
+              </article>
+              <article class="stat-card">
+                <div class="stat-value">2014</div>
+                <div class="stat-label">Focused on mobile since</div>
+              </article>
+              <article class="stat-card">
+                <div class="stat-value">3</div>
+                <div class="stat-label">Recent product domains</div>
+              </article>
+              <article class="stat-card">
+                <div class="stat-value">iOS</div>
+                <div class="stat-label">Architecture, delivery, mentoring</div>
+              </article>
+            </div>
+          </section>
+        </aside>
+      </section>
+
+      <section id="about" class="two-column">
+        <article class="panel section-panel">
+          <span class="section-label">About</span>
+          <h2>Built for teams that care about product quality</h2>
+          <p class="lede">
+            My background combines hands-on Swift development with architecture,
+            client coordination, and release discipline. I work comfortably
+            across UIKit and SwiftUI, API integration, Firebase-backed products,
+            CI/CD, automated testing, and the day-to-day decisions that keep a
+            product reliable as it grows.
+          </p>
+          <div class="impact-grid">
+            <article class="impact-card">
+              <strong>Architecture first</strong>
+              <p>
+                I define maintainable foundations early, so new features do not
+                turn into long-term delivery drag.
+              </p>
+            </article>
+            <article class="impact-card">
+              <strong>Product-aware execution</strong>
+              <p>
+                I translate business requirements into technical plans without
+                losing sight of release scope and user value.
+              </p>
+            </article>
+            <article class="impact-card">
+              <strong>Mentoring and coordination</strong>
+              <p>
+                I have supported junior engineers and coordinated with clients,
+                designers, and internal teams across remote setups.
+              </p>
+            </article>
+            <article class="impact-card">
+              <strong>Backend integration</strong>
+              <p>
+                I have delivered mobile apps connected to Firebase and broader
+                cloud services including AWS and Azure.
+              </p>
+            </article>
+          </div>
+        </article>
+
+        <article class="panel section-panel">
+          <span class="section-label">Focus</span>
+          <h2>What I usually help with</h2>
+          <div class="timeline">
+            <article class="timeline-card">
+              <div class="timeline-card-inner">
+                <h3>Launching new products</h3>
+                <p>
+                  Early-stage app architecture, core feature delivery, release
+                  preparation, and the engineering choices that matter before
+                  scale arrives.
+                </p>
+              </div>
+            </article>
+            <article class="timeline-card">
+              <div class="timeline-card-inner">
+                <h3>Stabilising growing apps</h3>
+                <p>
+                  Refactoring fragile code paths, improving collaboration, and
+                  reducing the delivery cost of every new iteration.
+                </p>
+              </div>
+            </article>
+            <article class="timeline-card">
+              <div class="timeline-card-inner">
+                <h3>Leading critical mobile work</h3>
+                <p>
+                  Technical direction, feature ownership, API integration, and
+                  practical delivery support for product and engineering teams.
+                </p>
+              </div>
+            </article>
+          </div>
+        </article>
+      </section>
+
+      <section id="experience" class="panel section-panel">
+        <span class="section-label">Experience</span>
+        <h2>Recent work</h2>
+        <p class="lede">
+          A snapshot of recent roles from the CV. The site can be expanded with
+          project case studies once you share the editable resume source.
+        </p>
+
+        <div class="timeline">
+          <article class="timeline-card">
+            <div class="timeline-card-inner">
+              <div class="job-topline">
+                <h3>Senior iOS Engineer</h3>
+                <div class="job-meta">Aug 2025 - Dec 2025</div>
+              </div>
+              <div class="job-company">Wavy Health</div>
+              <div class="job-meta">Netherlands</div>
+              <p>
+                Worked on a heart-health product built around wearable and smart
+                home integrations. Covered application architecture, API
+                integration, client collaboration, and SwiftUI-based iOS
+                development with a strong focus on product reliability.
+              </p>
+              <div class="pill-row">
+                <span class="pill">SwiftUI</span>
+                <span class="pill">Swift</span>
+                <span class="pill">REST APIs</span>
+                <span class="pill">Firebase</span>
+                <span class="pill">Jira</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="timeline-card">
+            <div class="timeline-card-inner">
+              <div class="job-topline">
+                <h3>Senior iOS Developer</h3>
+                <div class="job-meta">Nov 2024 - Jul 2025</div>
+              </div>
+              <div class="job-company">Vylo Inc. / Arena: Sports Super App</div>
+              <div class="job-meta">United States</div>
+              <p>
+                Built features for a sports product that combined real-time
+                updates, betting content, and fantasy-oriented user flows.
+                Worked on application development, third-party payment
+                integration, API work, and UIKit-based delivery.
+              </p>
+              <div class="pill-row">
+                <span class="pill">UIKit</span>
+                <span class="pill">Swift</span>
+                <span class="pill">Payments</span>
+                <span class="pill">Firebase</span>
+                <span class="pill">Xcode</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="timeline-card">
+            <div class="timeline-card-inner">
+              <div class="job-topline">
+                <h3>Senior iOS Architect</h3>
+                <div class="job-meta">Jul 2023 - Sep 2025</div>
+              </div>
+              <div class="job-company">Unreserved Inc.</div>
+              <div class="job-meta">Canada</div>
+              <p>
+                Served as the main iOS engineer and technical architect for a
+                real-estate platform. Led mobile architecture, feature
+                development, real-time auction workflows, and close coordination
+                with product stakeholders.
+              </p>
+              <div class="pill-row">
+                <span class="pill">Architecture</span>
+                <span class="pill">UIKit</span>
+                <span class="pill">Cloud Firestore</span>
+                <span class="pill">Jenkins</span>
+                <span class="pill">Fastlane</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="expertise" class="two-column">
+        <article class="panel section-panel">
+          <span class="section-label">Expertise</span>
+          <h2>Core technical range</h2>
+          <div class="expertise-grid">
+            <article class="skill-card">
+              <strong>iOS native development</strong>
+              <p>
+                Swift, UIKit, SwiftUI, Apple platform conventions, release
+                preparation, and App Store-ready quality standards.
+              </p>
+            </article>
+            <article class="skill-card">
+              <strong>Application architecture</strong>
+              <p>
+                Pragmatic structure for feature delivery, maintainability, and
+                clear team ownership as products evolve.
+              </p>
+            </article>
+            <article class="skill-card">
+              <strong>Cloud-connected products</strong>
+              <p>
+                Firebase, REST APIs, and mobile workflows that depend on backend
+                services and operational reliability.
+              </p>
+            </article>
+            <article class="skill-card">
+              <strong>Delivery systems</strong>
+              <p>
+                CI/CD pipelines, automated testing support, debugging, and the
+                engineering discipline needed for repeatable releases.
+              </p>
+            </article>
+          </div>
+        </article>
+
+        <article class="panel section-panel">
+          <span class="section-label">Approach</span>
+          <h2>How I work with teams</h2>
+          <div class="quote-card">
+            <strong>
+              Clear ownership, direct communication, and technical decisions that
+              remain defensible under real product pressure.
+            </strong>
+            <p>
+              I aim to reduce ambiguity early, keep architecture proportionate to
+              the product stage, and make sure engineering choices support both
+              shipping speed and long-term maintainability.
+            </p>
+          </div>
+          <div class="quote-card">
+            <strong>Typical stack and tools</strong>
+            <p>
+              Swift, SwiftUI, UIKit, Firebase, Cloud Firestore, REST APIs,
+              Xcode, Jira, Fastlane, Jenkins, automated testing, and modern
+              release workflows.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <section id="contact" class="panel section-panel">
+        <span class="section-label">Contact</span>
+        <h2>Let’s build something solid</h2>
+        <p class="lede">
+          If you need an experienced iOS engineer or mobile architect for a new
+          product, a hardening phase, or a leadership-heavy delivery role, this
+          page is ready to serve as a simple GitHub Pages portfolio.
+        </p>
+        <div class="contact-grid">
+          <article class="contact-card">
+            <strong>Email</strong>
+            <p>
+              <a href="mailto:yakovlev0509@yahoo.com">yakovlev0509@yahoo.com</a>
+            </p>
+          </article>
+          <article class="contact-card">
+            <strong>LinkedIn</strong>
+            <p>
+              <a href="https://linkedin.com/in/artem-yakovlev0509/" target="_blank" rel="noreferrer"
+                >linkedin.com/in/artem-yakovlev0509</a
+              >
+            </p>
+          </article>
+          <article class="contact-card">
+            <strong>Location</strong>
+            <p>Zaporizhzhia, Ukraine</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="shell">
+      <p>Built as a lightweight static portfolio for GitHub Pages.</p>
+    </footer>
+  </body>
+</html>
