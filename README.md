@@ -1,6 +1,6 @@
 # artemyakovlev.me
 
-Static portfolio site for GitHub Pages.
+This repository contains my personal portfolio website and resume page, built for GitHub Pages to present my background, experience, and contact details.
 
 Files:
 - `index.html` contains the full one-page portfolio.
